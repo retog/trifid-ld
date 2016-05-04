@@ -4,6 +4,7 @@
 @prefix dc: <http://purl.org/dc/elements/1.1/>.
 @prefix s: <http://schema.org/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix zzm: <http://zz2h.zazukoians.org/modes/> .
 @prefix zz2h: <http://zz2h.zazukoians.org/ontology/> .
 
@@ -182,6 +183,23 @@ r2h:before <title>.
             <br>
             Code on <a href="https://github.com/zazukoians/trifid-ld" style="color:white"><b>github</b></a>
         </div>'''
+  ];
+  r2h:before <osa>.
+
+<osa> a r2h:Matcher ;
+  r2h:triplePattern [
+    r2h:subject r2h:this;
+    r2h:predicate owl:sameAs;
+  ];
+  r2h:template [
+    r2h:context r2h:Default;
+    r2h:mustache '''
+        {{{:continue}}}
+        <hr />
+        {{#owl:sameAs}}
+            <div class="fetch" resource="{{.}}" />
+        {{/owl:sameAs}}   
+'''
   ];
   r2h:before <catchall>.
 
